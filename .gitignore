@@ -1,7 +1,15 @@
-# Local Python environment
+# Python
 .venv/
 __pycache__/
 *.py[cod]
 
-# Editor settings (local IDE config)
+# Node
+node_modules/
+frontend/node_modules/
+
+# Build output
+dist/
+frontend/dist/
+
+# Editor
 .vscode/
