@@ -79,4 +79,105 @@
     "created_at": "2026-06-08T15:35:00Z",
     "summary": "Proposed update to an internal operations policy."
   }
+  ,
+  {
+    "id": "doc_009",
+    "title": "Annual Budget Forecast",
+    "submitter_name": "Sam Rivera",
+    "category": "Finance",
+    "status": "pending",
+    "priority": "high",
+    "created_at": "2026-06-09T08:00:00Z",
+    "summary": "Annual budget forecast for the upcoming fiscal year, requires sign-off from all department heads."
+  },
+  {
+    "id": "doc_010",
+    "title": "Data Retention Policy",
+    "submitter_name": "Blake Thompson",
+    "category": "Legal",
+    "status": "in_review",
+    "priority": "medium",
+    "created_at": "2026-06-09T10:30:00Z",
+    "summary": "Updated data retention guidelines aligned with new regulatory requirements."
+  },
+  {
+    "id": "doc_011",
+    "title": "Onboarding Checklist v2",
+    "submitter_name": "Jordan Kim",
+    "category": "HR",
+    "status": "approved",
+    "priority": "low",
+    "created_at": "2026-06-09T13:45:00Z",
+    "summary": "Revised onboarding checklist incorporating feedback from Q2 new hires."
+  },
+  {
+    "id": "doc_012",
+    "title": "Infrastructure Cost Analysis",
+    "submitter_name": "Morgan Rivera",
+    "category": "Engineering",
+    "status": "pending",
+    "priority": "high",
+    "created_at": "2026-06-10T09:00:00Z",
+    "summary": "Breakdown of cloud infrastructure costs with optimization recommendations."
+  },
+  {
+    "id": "doc_013",
+    "title": "Q3 Marketing Strategy",
+    "submitter_name": "Casey Park",
+    "category": "Marketing",
+    "status": "in_review",
+    "priority": "high",
+    "created_at": "2026-06-10T11:15:00Z",
+    "summary": "Full strategy document for Q3 including channel mix, budget allocation and KPIs."
+  },
+  {
+    "id": "doc_014",
+    "title": "Vendor SLA Review",
+    "submitter_name": "Alex Chen",
+    "category": "Legal",
+    "status": "rejected",
+    "priority": "medium",
+    "created_at": "2026-06-10T14:00:00Z",
+    "summary": "Review of existing vendor SLAs flagged for renegotiation based on performance issues."
+  },
+  {
+    "id": "doc_015",
+    "title": "Accessibility Audit Report",
+    "submitter_name": "Riley Watson",
+    "category": "Engineering",
+    "status": "approved",
+    "priority": "medium",
+    "created_at": "2026-06-10T15:30:00Z",
+    "summary": "Results of the WCAG 2.1 AA accessibility audit across all customer-facing surfaces."
+  },
+  {
+    "id": "doc_016",
+    "title": "Travel & Expense Policy Update",
+    "submitter_name": "Drew Nguyen",
+    "category": "Operations",
+    "status": "pending",
+    "priority": "low",
+    "created_at": "2026-06-11T08:30:00Z",
+    "summary": "Proposed updates to travel and expense reimbursement limits and approval workflows."
+  },
+  {
+    "id": "doc_017",
+    "title": "Incident Response Runbook",
+    "submitter_name": "Taylor Brooks",
+    "category": "Security",
+    "status": "in_review",
+    "priority": "high",
+    "created_at": "2026-06-11T09:45:00Z",
+    "summary": "Runbook detailing step-by-step procedures for responding to security incidents."
+  },
+  {
+    "id": "doc_018",
+    "title": "Product Roadmap H2 2026",
+    "submitter_name": "Jamie Torres",
+    "category": "Product",
+    "status": "pending",
+    "priority": "high",
+    "created_at": "2026-06-11T11:00:00Z",
+    "summary": "Draft roadmap for H2 2026 covering feature prioritization, milestones and resource needs."
+  }
 ]

@@ -1,7 +1,8 @@
 import type {
   CreateDocumentPayload,
   Document,
-  DocumentStatus,
+  DocumentFilters,
+  PaginatedResponse,
   UpdateDocumentPayload,
 } from "./types";
 
@@ -25,9 +26,17 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
 }
 
 export const api = {
-  getDocuments(status?: DocumentStatus): Promise<Document[]> {
-    const query = status ? `?status=${status}` : "";
-    return request<Document[]>(`/documents${query}`);
+  getDocuments(filters?: DocumentFilters): Promise<PaginatedResponse> {
+    const params = new URLSearchParams();
+    if (filters?.status) params.set("status", filters.status);
+    if (filters?.priority) params.set("priority", filters.priority);
+    if (filters?.search) params.set("search", filters.search);
+    if (filters?.sort_by) params.set("sort_by", filters.sort_by);
+    if (filters?.order) params.set("order", filters.order);
+    if (filters?.page) params.set("page", String(filters.page));
+    if (filters?.page_size) params.set("page_size", String(filters.page_size));
+    const query = params.size ? `?${params.toString()}` : "";
+    return request<PaginatedResponse>(`/documents${query}`);
   },
 
   getDocument(id: string): Promise<Document> {
