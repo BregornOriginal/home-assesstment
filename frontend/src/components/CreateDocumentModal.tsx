@@ -1,7 +1,9 @@
-import { type FormEvent, type ReactNode, useState } from "react";
+import { type FormEvent, type ReactNode, useCallback, useState } from "react";
 
 import type { CreateDocumentPayload, DocumentPriority } from "../types";
 import { ALL_PRIORITIES, PRIORITY_LABELS } from "../types";
+import { useEscapeKey } from "../hooks/useEscapeKey";
+import { useToast } from "./Toast";
 
 interface Props {
   onSubmit: (payload: CreateDocumentPayload) => Promise<void>;
@@ -17,9 +19,13 @@ const EMPTY: CreateDocumentPayload = {
 };
 
 export function CreateDocumentModal({ onSubmit, onClose }: Props) {
+  const { toast } = useToast();
   const [form, setForm] = useState<CreateDocumentPayload>(EMPTY);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const handleClose = useCallback(() => onClose(), [onClose]);
+  useEscapeKey(handleClose);
 
   function set<K extends keyof CreateDocumentPayload>(
     key: K,
@@ -34,6 +40,7 @@ export function CreateDocumentModal({ onSubmit, onClose }: Props) {
     setError(null);
     try {
       await onSubmit(form);
+      toast(`"${form.title}" created successfully.`);
       onClose();
     } catch (err) {
       setError(
