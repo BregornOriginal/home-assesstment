@@ -2,6 +2,10 @@
 
 An internal document management application that allows users to view, filter, create, update, and delete documents submitted for review.
 
+## Video presentation
+
+https://www.loom.com/share/e43120b2576b442f88df540e446d9efc
+
 ## Stack
 
 - **Frontend:** React 19 + TypeScript + Vite + Tailwind CSS v4 + TanStack Query v5
