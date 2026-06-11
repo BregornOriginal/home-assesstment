@@ -45,3 +45,30 @@ export const ALL_STATUSES: DocumentStatus[] = [
 ];
 
 export const ALL_PRIORITIES: DocumentPriority[] = ["low", "medium", "high"];
+
+export type SortField = "created_at" | "title" | "priority";
+export type SortOrder = "asc" | "desc";
+
+export const SORT_FIELD_LABELS: Record<SortField, string> = {
+  created_at: "Date",
+  title: "Title",
+  priority: "Priority",
+};
+
+export interface DocumentFilters {
+  status?: DocumentStatus;
+  priority?: DocumentPriority;
+  search?: string;
+  sort_by?: SortField;
+  order?: SortOrder;
+  page?: number;
+  page_size?: number;
+}
+
+export interface PaginatedResponse {
+  items: Document[];
+  total: number;
+  page: number;
+  page_size: number;
+  total_pages: number;
+}

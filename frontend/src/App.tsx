@@ -3,6 +3,9 @@ import { useState } from "react";
 import { CreateDocumentModal } from "./components/CreateDocumentModal";
 import { DocumentDetail } from "./components/DocumentDetail";
 import { DocumentList } from "./components/DocumentList";
+import { Pagination } from "./components/Pagination";
+import { SearchBar } from "./components/SearchBar";
+import { SortControls } from "./components/SortControls";
 import { StatusFilter } from "./components/StatusFilter";
 import { useDocuments } from "./hooks/useDocuments";
 import type { Document } from "./types";
@@ -10,10 +13,16 @@ import type { Document } from "./types";
 export function App() {
   const {
     documents,
+    pagination,
     loading,
     error,
-    selectedStatus,
-    setSelectedStatus,
+    filters,
+    setStatus,
+    setPriority,
+    setSearch,
+    setSortBy,
+    setSortOrder,
+    setPage,
     createDocument,
     updateStatus,
     deleteDocument,
@@ -40,10 +49,7 @@ export function App() {
             Document Review Queue
           </h1>
           <p className="mt-0.5 text-xs text-gray-400">
-            {documents.length} document{documents.length !== 1 ? "s" : ""}
-            {selectedStatus
-              ? ` · filtered by ${selectedStatus.replace("_", " ")}`
-              : ""}
+            {pagination.total} document{pagination.total !== 1 ? "s" : ""}
           </p>
         </div>
         <button
@@ -60,13 +66,40 @@ export function App() {
         }`}
       >
         <div className="flex flex-col gap-4">
-          <StatusFilter selected={selectedStatus} onChange={setSelectedStatus} />
+          <SearchBar
+            value={filters.search ?? ""}
+            onChange={setSearch}
+          />
+
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <StatusFilter
+              selectedStatus={filters.status}
+              selectedPriority={filters.priority}
+              onStatusChange={setStatus}
+              onPriorityChange={setPriority}
+            />
+            <SortControls
+              sortBy={filters.sort_by ?? "created_at"}
+              order={filters.order ?? "desc"}
+              onSortByChange={setSortBy}
+              onOrderChange={setSortOrder}
+            />
+          </div>
+
           <DocumentList
             documents={documents}
             loading={loading}
             error={error}
             selectedId={selectedDoc?.id ?? null}
             onSelect={setSelectedDoc}
+          />
+
+          <Pagination
+            page={pagination.page}
+            totalPages={pagination.total_pages}
+            total={pagination.total}
+            pageSize={pagination.page_size}
+            onPageChange={setPage}
           />
         </div>
 
