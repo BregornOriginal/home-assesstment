@@ -1,0 +1,82 @@
+[
+  {
+    "id": "doc_001",
+    "title": "Vendor Contract Review",
+    "submitter_name": "Alex Morgan",
+    "category": "Legal",
+    "status": "pending",
+    "priority": "high",
+    "created_at": "2026-06-01T10:00:00Z",
+    "summary": "Contract requires review before vendor onboarding."
+  },
+  {
+    "id": "doc_002",
+    "title": "Marketing Campaign Brief",
+    "submitter_name": "Jamie Lee",
+    "category": "Marketing",
+    "status": "in_review",
+    "priority": "medium",
+    "created_at": "2026-06-02T14:30:00Z",
+    "summary": "Campaign brief for Q3 launch needs approval."
+  },
+  {
+    "id": "doc_003",
+    "title": "Security Checklist",
+    "submitter_name": "Taylor Smith",
+    "category": "Security",
+    "status": "approved",
+    "priority": "high",
+    "created_at": "2026-06-03T09:15:00Z",
+    "summary": "Checklist for internal security review."
+  },
+  {
+    "id": "doc_004",
+    "title": "Office Supply Request",
+    "submitter_name": "Jordan Brown",
+    "category": "Operations",
+    "status": "rejected",
+    "priority": "low",
+    "created_at": "2026-06-04T16:45:00Z",
+    "summary": "Request for additional office equipment."
+  },
+  {
+    "id": "doc_005",
+    "title": "Product Requirements Draft",
+    "submitter_name": "Casey Nguyen",
+    "category": "Product",
+    "status": "pending",
+    "priority": "medium",
+    "created_at": "2026-06-05T11:20:00Z",
+    "summary": "Initial product requirements draft for review before planning."
+  },
+  {
+    "id": "doc_006",
+    "title": "Engineering Design Notes",
+    "submitter_name": "Morgan Patel",
+    "category": "Engineering",
+    "status": "in_review",
+    "priority": "high",
+    "created_at": "2026-06-06T13:10:00Z",
+    "summary": "Technical design notes for a proposed internal workflow improvement."
+  },
+  {
+    "id": "doc_007",
+    "title": "Customer Feedback Summary",
+    "submitter_name": "Riley Johnson",
+    "category": "Customer Success",
+    "status": "approved",
+    "priority": "medium",
+    "created_at": "2026-06-07T08:45:00Z",
+    "summary": "Summary of recent customer feedback grouped by theme."
+  },
+  {
+    "id": "doc_008",
+    "title": "Internal Policy Update",
+    "submitter_name": "Drew Carter",
+    "category": "Operations",
+    "status": "pending",
+    "priority": "low",
+    "created_at": "2026-06-08T15:35:00Z",
+    "summary": "Proposed update to an internal operations policy."
+  }
+]
