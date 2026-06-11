@@ -43,76 +43,105 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
-      <header className="flex items-center justify-between border-b border-gray-200 bg-white px-8 py-4">
-        <div>
-          <h1 className="text-base font-bold text-gray-900">
-            Document Review Queue
-          </h1>
-          <p className="mt-0.5 text-xs text-gray-400">
-            {pagination.total} document{pagination.total !== 1 ? "s" : ""}
-          </p>
+      {/* Header */}
+      <header className="border-b border-gray-200 bg-white px-4 py-3 sm:px-8 sm:py-4">
+        <div className="flex items-center justify-between gap-3">
+          <div>
+            <h1 className="text-sm font-bold text-gray-900 sm:text-base">
+              Document Review Queue
+            </h1>
+            <p className="mt-0.5 text-xs text-gray-400">
+              {pagination.total} document{pagination.total !== 1 ? "s" : ""}
+            </p>
+          </div>
+          <button
+            onClick={() => setShowCreate(true)}
+            className="cursor-pointer whitespace-nowrap rounded-md border-none bg-blue-500 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-600 sm:px-4 sm:py-2 sm:text-sm"
+          >
+            + New
+          </button>
         </div>
-        <button
-          onClick={() => setShowCreate(true)}
-          className="cursor-pointer rounded-md border-none bg-blue-500 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-600"
-        >
-          + New Document
-        </button>
       </header>
 
-      <main
-        className={`mx-auto max-w-6xl items-start gap-6 p-8 ${
-          selectedDoc ? "grid grid-cols-[1fr_380px]" : "block"
-        }`}
-      >
-        <div className="flex flex-col gap-4">
-          <SearchBar
-            value={filters.search ?? ""}
-            onChange={setSearch}
-          />
+      {/* Main layout: single column on mobile, two-column on lg when detail is open */}
+      <main className="mx-auto max-w-6xl p-4 sm:p-6 lg:p-8">
+        <div
+          className={`items-start gap-6 ${
+            selectedDoc ? "lg:grid lg:grid-cols-[1fr_380px]" : "block"
+          }`}
+        >
+          {/* Left: list + controls */}
+          <div className="flex flex-col gap-3 sm:gap-4">
+            <SearchBar value={filters.search ?? ""} onChange={setSearch} />
 
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <StatusFilter
-              selectedStatus={filters.status}
-              selectedPriority={filters.priority}
-              onStatusChange={setStatus}
-              onPriorityChange={setPriority}
+            <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-3">
+              <div className="overflow-x-auto pb-1">
+                <StatusFilter
+                  selectedStatus={filters.status}
+                  selectedPriority={filters.priority}
+                  onStatusChange={setStatus}
+                  onPriorityChange={setPriority}
+                />
+              </div>
+              <SortControls
+                sortBy={filters.sort_by ?? "created_at"}
+                order={filters.order ?? "desc"}
+                onSortByChange={setSortBy}
+                onOrderChange={setSortOrder}
+              />
+            </div>
+
+            <DocumentList
+              documents={documents}
+              loading={loading}
+              error={error}
+              selectedId={selectedDoc?.id ?? null}
+              onSelect={(doc) => setSelectedDoc(doc)}
             />
-            <SortControls
-              sortBy={filters.sort_by ?? "created_at"}
-              order={filters.order ?? "desc"}
-              onSortByChange={setSortBy}
-              onOrderChange={setSortOrder}
+
+            <Pagination
+              page={pagination.page}
+              totalPages={pagination.total_pages}
+              total={pagination.total}
+              pageSize={pagination.page_size}
+              onPageChange={setPage}
             />
           </div>
 
-          <DocumentList
-            documents={documents}
-            loading={loading}
-            error={error}
-            selectedId={selectedDoc?.id ?? null}
-            onSelect={setSelectedDoc}
-          />
-
-          <Pagination
-            page={pagination.page}
-            totalPages={pagination.total_pages}
-            total={pagination.total}
-            pageSize={pagination.page_size}
-            onPageChange={setPage}
-          />
+          {/* Right: detail panel — bottom sheet on mobile, sticky sidebar on lg */}
+          {selectedDoc && (
+            <>
+              {/* Mobile: fixed bottom sheet */}
+              <div className="fixed inset-x-0 bottom-0 z-40 lg:hidden">
+                <div className="max-h-[70vh] overflow-y-auto rounded-t-2xl bg-white shadow-2xl">
+                  <div className="mx-auto mt-2 h-1 w-10 rounded-full bg-gray-300" />
+                  <div className="p-4">
+                    <DocumentDetail
+                      document={selectedDoc}
+                      onUpdateStatus={handleUpdateStatus}
+                      onDelete={handleDelete}
+                      onClose={() => setSelectedDoc(null)}
+                    />
+                  </div>
+                </div>
+              </div>
+              {/* Backdrop on mobile */}
+              <div
+                className="fixed inset-0 z-30 bg-black/20 lg:hidden"
+                onClick={() => setSelectedDoc(null)}
+              />
+              {/* Desktop: sticky sidebar */}
+              <div className="sticky top-8 hidden lg:block">
+                <DocumentDetail
+                  document={selectedDoc}
+                  onUpdateStatus={handleUpdateStatus}
+                  onDelete={handleDelete}
+                  onClose={() => setSelectedDoc(null)}
+                />
+              </div>
+            </>
+          )}
         </div>
-
-        {selectedDoc && (
-          <div className="sticky top-8">
-            <DocumentDetail
-              document={selectedDoc}
-              onUpdateStatus={handleUpdateStatus}
-              onDelete={handleDelete}
-              onClose={() => setSelectedDoc(null)}
-            />
-          </div>
-        )}
       </main>
 
       {showCreate && (

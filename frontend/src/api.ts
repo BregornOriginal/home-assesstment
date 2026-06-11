@@ -16,8 +16,13 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
 
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
-    const message =
-      (body as { detail?: string }).detail ?? `Request failed: ${res.status}`;
+    const { detail, errors } = body as {
+      detail?: string;
+      errors?: Record<string, string>;
+    };
+    const message = errors
+      ? Object.values(errors).join(" ")
+      : (detail ?? `Request failed: ${res.status}`);
     throw new Error(message);
   }
 

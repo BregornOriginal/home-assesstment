@@ -18,7 +18,7 @@ export function DocumentCard({ document, selected, onClick }: Props) {
   return (
     <div
       onClick={onClick}
-      className={`cursor-pointer rounded-lg border p-4 transition-colors ${
+      className={`cursor-pointer rounded-lg border p-4 transition-colors active:scale-[0.99] ${
         selected
           ? "border-blue-400 bg-blue-50"
           : "border-gray-200 bg-white hover:border-gray-300"
